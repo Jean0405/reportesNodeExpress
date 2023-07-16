@@ -112,4 +112,52 @@ VALUES (
         "3324097917"
     );
 
-SELECT * FROM trainer;
+/*iNSERTA DATOS A LA TABLA AREA*/
+
+INSERT INTO area(nombre_area) VALUES ("Review 2");
+
+/*iNSERTA DATOS A LA TABLA LUGAR*/
+
+INSERT INTO
+    lugar(nombre_lugar, area_id)
+VALUES ("Sputnik", 1), ("Apolo", 1), ("Artemis", 1);
+
+INSERT INTO
+    lugar(nombre_lugar, area_id)
+VALUES ("Corvus", 2), ("Endor", 3);
+
+/*iNSERTA DATOS A LA TABLA DISPOSITIVO*/
+
+INSERT INTO
+    dispositivo(
+        nombre_dispositivo,
+        descripcion_dispositivo,
+        lugar_id
+    )
+VALUES (
+        "Teclado",
+        "Teclado de la marca Redragon del modelo Kumara",
+        1
+    ), (
+        "Mouse",
+        "Mouse de marca Logitech G203",
+        2
+    ), (
+        "Diadema",
+        "Diadema de la marca Logitech G Series G435 negro y amarillo fluorescente",
+        3
+    ), (
+        "Diadema",
+        "Diadema de la marca Logitech G Series G435 negro y amarillo fluorescente",
+        4
+    ), (
+        "Diadema",
+        "Diadema de la marca Logitech G Series G435 negro y amarillo fluorescente",
+        5
+    ), (
+        "Diadema",
+        "Diadema de la marca Logitech G Series G435 negro y amarillo fluorescente",
+        1
+    );
+
+SELECT * FROM dispositivo;

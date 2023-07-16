@@ -1,5 +1,5 @@
-import mysql from "mysql2/promise";
 import { Router } from "express";
+import mysql from "mysql2/promise";
 import proxyTrainer from "../MIDDLEWARE/proxyTrainer.js";
 
 const TRAINER = Router();
@@ -8,7 +8,7 @@ let conn = undefined;
 TRAINER.use(async (req, res, next) => {
   try {
     let CONFIG_CONN = JSON.parse(process.env.MY_CONNECTION);
-    conn = mysql.createPool(CONFIG_CONN);
+    conn = await mysql.createPool(CONFIG_CONN);
     next();
   } catch (error) {
     res.send(error + "-> CONNECTION ERROR");
