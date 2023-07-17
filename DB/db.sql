@@ -30,7 +30,7 @@ CREATE TABLE
     );
 
 CREATE TABLE
-    area(
+    areas(
         id_area INT AUTO_INCREMENT PRIMARY KEY,
         nombre_area VARCHAR(30) NOT NULL
     );
@@ -64,7 +64,7 @@ ADD
 
 ALTER TABLE lugar
 ADD
-    CONSTRAINT fk_areaLugar FOREIGN KEY (area_id) REFERENCES area(id_area);
+    CONSTRAINT fk_areaLugar FOREIGN KEY (area_id) REFERENCES areas(id_area);
 
 ALTER TABLE incidencia
 ADD
@@ -114,7 +114,7 @@ VALUES (
 
 /*iNSERTA DATOS A LA TABLA AREA*/
 
-INSERT INTO area(nombre_area) VALUES ("Review 2");
+INSERT INTO areas(nombre_area) VALUES ("Review 2");
 
 /*iNSERTA DATOS A LA TABLA LUGAR*/
 
@@ -160,4 +160,38 @@ VALUES (
         1
     );
 
-SELECT * FROM dispositivo;
+INSERT INTO
+    categoria (
+        id_categoria,
+        nombre_categoria
+    )
+VALUES (1, 'LEVE'), (2, 'MODERADA'), (3, 'GRAVE');
+
+INSERT INTO
+    tipo_incidencia (
+        id_tipoIncidencia,
+        nombre_tipoIncidencia
+    )
+VALUES (1, 'HARDWARE'), (2, 'SOFTWARE');
+
+SELECT * FROM incidencia;
+
+SELECT
+    incidencia.descripcion,
+    incidencia.fecha_reporte,
+    categoria.nombre_categoria AS categoria,
+    tipo_incidencia.nombre_tipoIncidencia AS tipo_incidencia,
+    lugar.nombre_lugar AS lugar,
+    areas.nombre_area AS area,
+    trainer.nombre_trainer AS trainer,
+    trainer.id_trainer
+FROM incidencia
+    INNER JOIN categoria ON incidencia.categoria_id = categoria.id_categoria
+    INNER JOIN tipo_incidencia ON incidencia.tipoIncidencia_id = tipo_incidencia.id_tipoIncidencia
+    INNER JOIN lugar ON incidencia.lugar_id = lugar.id_lugar
+    INNER JOIN areas ON lugar.area_id = areas.id_area
+    INNER JOIN trainer ON incidencia.trainer_id = trainer.id_trainer;
+
+ALTER TABLE area RENAME TO areas;
+
+SELECT * FROM area;
